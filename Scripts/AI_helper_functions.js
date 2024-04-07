@@ -13,7 +13,7 @@ function AnalyzeText(sentences){
 }
 
 function DetectAnomaly(embeddings){
-    embeddings.print(true);
+    embeddings
 }
 
 async function SentimentAnalysis(text){
@@ -43,3 +43,4 @@ async function SentimentAnalysis(text){
     }
 }
 
+AnalyzeText(["test"]);
