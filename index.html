@@ -1,0 +1,16 @@
+<html>
+    <!-- Load ONNX.js -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <!-- Code that consume ONNX.js -->
+    <script>
+        async function test(){
+            const sess = new onnx.InferenceSession();
+            console.time("loading model");
+            await sess.loadModel('https://microsoft.github.io/onnxjs-demo/resnet50v2.onnx');
+            console.timeEnd("loading model");
+
+            console.log("model loaded");
+            }
+        test()
+    </script>
+</html>
