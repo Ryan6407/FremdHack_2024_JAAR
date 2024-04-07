@@ -23,7 +23,18 @@ function EuclideanDistance(vector1, vector2){
 
 function DetectAnomaly(embeddings){
     var embedding_values = embeddings.arraySync();
-    console.log(EuclideanDistance(embedding_values[0], embedding_values[1]));
+    var outlier_values = [];
+
+    for (let i = 0; i < embedding_values.length; i++){
+        let total = 0;
+        for (let j = 0; j < embedding_values.length; j++){
+            if (i != j){
+                total += EuclideanDistance(embedding_values[i], embedding_values[j]);
+            }
+        } 
+        outlier_values.push(total);
+    }
+    console.log(outlier_values);
 }
 
 async function SentimentAnalysis(text){
@@ -53,4 +64,4 @@ async function SentimentAnalysis(text){
     }
 }
 
-AnalyzeText(["I am in a pleasant mood", "I am really happy"]);
+AnalyzeText(["I am in a pleasant mood", "I am really sad", "I am really mad", "Whats for dinner today?"]);
