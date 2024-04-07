@@ -7,7 +7,7 @@ const model = tf.loadLayersModel("https://storage.googleapis.com/tfjs-models/tfj
 function AnalyzeText(sentences){
     const results = use.load().then(model => {
         model.embed(sentences).then(embeddings => {
-            DetectAnomaly(embeddings);
+            KNNAnomalyDetection(embeddings);
         });
     });
 }
@@ -21,7 +21,25 @@ function EuclideanDistance(vector1, vector2){
     return Math.sqrt(sum);
 }
 
-function DetectAnomaly(embeddings){
+// Function to calculate the standard deviation
+function calculateStandardDeviation(values) {
+    // Step 1: Calculate the mean
+    const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+
+    // Step 2: Calculate the squared differences
+    const squaredDifferences = values.map(value => Math.pow(value - mean, 2));
+
+    // Step 3: Calculate the mean of the squared differences
+    const meanSquaredDifference = squaredDifferences.reduce((sum, value) => sum + value, 0) / squaredDifferences.length;
+
+    // Step 4: Take the square root of the mean of the squared differences
+    const standardDeviation = Math.sqrt(meanSquaredDifference);
+
+    return standardDeviation;
+}
+
+
+function KNNAnomalyDetection(embeddings){
     var embedding_values = embeddings.arraySync();
     var outlier_values = [];
 
@@ -32,9 +50,26 @@ function DetectAnomaly(embeddings){
                 total += EuclideanDistance(embedding_values[i], embedding_values[j]);
             }
         } 
-        outlier_values.push(total);
+        outlier_values.push(total / (embedding_values.length - 1));
     }
-    console.log(outlier_values);
+    let difference_score = calculateStandardDeviation(outlier_values);
+
+    const sorted_values = [...outlier_values].sort();
+
+    let fourth_quartile_threshold = sorted_values[sorted_values.length-2];
+
+    console.log(fourth_quartile_threshold)
+
+    let anomalies = []
+
+    for (let p = 0; p < sorted_values.length; p++){
+        if (outlier_values[p] > fourth_quartile_threshold + 0.1){
+            console.log(p + " is an outlier");
+            anomalies.push(p);
+        }
+    }
+
+    return anomalies;
 }
 
 async function SentimentAnalysis(text){
@@ -64,4 +99,4 @@ async function SentimentAnalysis(text){
     }
 }
 
-AnalyzeText(["I am in a pleasant mood", "I am really sad", "I am really mad", "Whats for dinner today?"]);
+AnalyzeText(["I am in a horrible mood", "I am really sad", "I am really mad", "I am doing really good today"]);
