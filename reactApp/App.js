@@ -7,7 +7,7 @@ import AnalyticsScreen from './AnalyticsScreen';
 import TweetPage from './addTweet';
 import OurAIScreen from './OurAI';
 import AnalyzeText from './AIHelperFunctions';
-
+import AwarenessPage from './Awareness';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -42,6 +42,11 @@ const App = () => {
         <Stack.Screen
           name="OurAI"
           component={OurAIScreen}
+          options={{ title: ' ' }}
+        />
+        <Stack.Screen
+          name="AwarenessScreeen"
+          component={AwarenessPage}
           options={{ title: ' ' }}
         />
       </Stack.Navigator>
