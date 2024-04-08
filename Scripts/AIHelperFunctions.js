@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 
 const model = tf.loadLayersModel("https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json");
 
-function AnalyzeText(sentences){
+async function AnalyzeText(sentences){
     const results = use.load().then(model => {
         model.embed(sentences).then(embeddings => {
             let anomalies = KNNAnomalyDetection(embeddings);
@@ -13,6 +13,15 @@ function AnalyzeText(sentences){
             }
         });
     });
+
+    let sentiment_values = [];
+
+    for (let i = 0; i < sentences.length; i++){
+        let c = await SentimentAnalysis(sentences[i]);
+        sentiment_values.push(c);
+    }
+
+    console.log(sentiment_values);
 }
 
 function EuclideanDistance(vector1, vector2){
@@ -65,12 +74,9 @@ function KNNAnomalyDetection(embeddings){
 
     for (let p = 0; p < sorted_values.length; p++){
         if (outlier_values[p] > fourth_quartile_threshold){
-            console.log(p + " is an outlier");
             anomalies.push(p);
         }
     }
-
-    console.log(anomalies);
 
     return anomalies;
 }
@@ -92,14 +98,14 @@ async function SentimentAnalysis(text){
     const input = inputBuffer.toTensor();
     const predictOut = (await model).predict([input]);
     const positivity = predictOut.dataSync()[0];
-    console.log(text);
-    console.log(positivity);
     if (positivity < 0.95){
-        console.log("BAD");
     }
     else{
-        console.log("SEEMS OK");
     }
+
+    console.log(positivity);
+
+    return positivity;
 }
 
 AnalyzeText(["things are fantastic today", "I am very happy today", "I am so depressed", "I am very very happy"]);
