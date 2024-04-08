@@ -7,7 +7,10 @@ const model = tf.loadLayersModel("https://storage.googleapis.com/tfjs-models/tfj
 function AnalyzeText(sentences){
     const results = use.load().then(model => {
         model.embed(sentences).then(embeddings => {
-            KNNAnomalyDetection(embeddings);
+            let anomalies = KNNAnomalyDetection(embeddings);
+            for (let i = 0; i < anomalies.length; i++){
+                console.log(sentences[anomalies[i]]);
+            }
         });
     });
 }
@@ -58,16 +61,16 @@ function KNNAnomalyDetection(embeddings){
 
     let fourth_quartile_threshold = sorted_values[sorted_values.length-2];
 
-    console.log(fourth_quartile_threshold)
-
     let anomalies = []
 
     for (let p = 0; p < sorted_values.length; p++){
-        if (outlier_values[p] > fourth_quartile_threshold + 0.1){
+        if (outlier_values[p] > fourth_quartile_threshold){
             console.log(p + " is an outlier");
             anomalies.push(p);
         }
     }
+
+    console.log(anomalies);
 
     return anomalies;
 }
@@ -99,4 +102,4 @@ async function SentimentAnalysis(text){
     }
 }
 
-AnalyzeText(["I am in a horrible mood", "I am really sad", "I am really mad", "I am doing really good today"]);
+AnalyzeText(["things are fantastic today", "I am very happy today", "I am so depressed", "I am very very happy"]);
