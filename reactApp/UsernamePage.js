@@ -16,7 +16,7 @@ const UsernamePage = ({ navigation }) => {
 
   const handleMentalHealthAwareness = () => {
     // Navigate to another screen when Mental Health Awareness button is pressed
-    navigation.navigate('AwarenessPage');
+    navigation.navigate('AwarenessScreen');
   };
 
   return (

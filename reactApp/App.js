@@ -45,7 +45,7 @@ const App = () => {
           options={{ title: ' ' }}
         />
         <Stack.Screen
-          name="AwarenessScreeen"
+          name="AwarenessScreen"
           component={AwarenessPage}
           options={{ title: ' ' }}
         />
