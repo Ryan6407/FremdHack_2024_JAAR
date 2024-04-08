@@ -1,13 +1,33 @@
-import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UsernamePage from './UsernamePage';
+import LoadingScreen from './LoadingScreen';
+import AnalyticsScreen from './AnalyticsScreen';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar />
-      <UsernamePage />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="UsernamePage"
+          component={UsernamePage}
+          options={{ title: 'Username Page' }}
+        />
+        <Stack.Screen
+          name="LoadingScreen"
+          component={LoadingScreen}
+          options={{ title: 'Loading Screen' }}
+        />
+        <Stack.Screen
+          name="AnalyticsScreen"
+          component={AnalyticsScreen}
+          options={{ title: 'Analytics Screen' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
