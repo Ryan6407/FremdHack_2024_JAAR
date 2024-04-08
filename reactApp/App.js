@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UsernamePage from './UsernamePage';
 import LoadingScreen from './LoadingScreen';
 import AnalyticsScreen from './AnalyticsScreen';
+import TweetPage from './addTweet';
+import OurAIScreen from './OurAI';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,16 @@ const App = () => {
           name="AnalyticsScreen"
           component={AnalyticsScreen}
           options={{ title: 'Analytics Screen' }}
+        />
+        <Stack.Screen
+          name="AddTweet"
+          component={TweetPage}
+          options={{ title: 'Add Tweet' }}
+        />
+        <Stack.Screen
+          name="OurAI"
+          component={OurAIScreen}
+          options={{ title: 'Our AI' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

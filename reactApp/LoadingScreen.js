@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 const LoadingScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('AnalyticsScreen'); 
+      navigation.replace('AddTweet'); 
     }, 3000); 
 
     return () => clearTimeout(timer);
