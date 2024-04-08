@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Linking } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking, ScrollView } from 'react-native';
 
 const AwarenessPage = () => {
   const openSuicideHotline = () => {
@@ -7,7 +7,7 @@ const AwarenessPage = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Image
         source={require('./assets/Awareness_Logo.png')}
         style={styles.image}
@@ -37,17 +37,17 @@ const AwarenessPage = () => {
       <Text style={styles.resource}>
         - SAMHSA Treatment Referral Helpline: 1-877-SAMHSA7
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#FEEAFA',
     paddingHorizontal: 20,
+    paddingVertical: 40, // Adjust vertical padding
   },
   image: {
     width: 200,
