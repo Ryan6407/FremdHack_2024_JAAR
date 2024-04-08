@@ -10,6 +10,7 @@
     "terminal": "^0.1.4",
     "the": "^1.0.2",
     "twitter-api-v2": "^1.16.1"
+    
   },
   "type": "module"
 }
