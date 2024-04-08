@@ -10,13 +10,13 @@ const OurAIScreen = () => {
         <Text style={styles.description}>
           ChirpAI is our intelligent virtual assistant designed to provide comprehensive support and guidance for mental wellness. Leveraging state-of-the-art machine learning techniques, ChirpAI offers a range of advanced functionalities including:
           {'\n\n'}
-          - Anomaly Detection using K-Nearest Neighbors (KNN) algorithm: Identifies unusual patterns or behaviors in user interactions to proactively address potential concerns or issues.
+          <Text style={styles.bulletPoint}>• Anomaly Detection using K-Nearest Neighbors (KNN) algorithm:</Text> Identifies unusual patterns or behaviors in user interactions to proactively address potential concerns or issues.
           {'\n\n'}
-          - Sentiment Analysis using Convolutional Neural Networks (CNNs): Analyzes the emotional tone of tweets to understand user sentiment, providing personalized responses and recommendations tailored to individual needs.
+          <Text style={styles.bulletPoint}>• Sentiment Analysis using Convolutional Neural Networks (CNNs):</Text> Analyzes the emotional tone of tweets to understand user sentiment, providing personalized responses and recommendations tailored to individual needs.
           {'\n\n'}
-          - Potential Time Series Analysis: Tracks trends and fluctuations in user activity over time, allowing for predictive insights and adaptive support strategies.
+          <Text style={styles.bulletPoint}>• Potential Time Series Analysis:</Text> Tracks trends and fluctuations in user activity over time, allowing for predictive insights and adaptive support strategies.
           {'\n\n'}
-          - Statistical Analysis of the Emotion of Each Tweet: Utilizes advanced statistical methods to quantify and analyze the emotional content of tweets, enabling a deeper understanding of user emotions and facilitating targeted interventions.
+          <Text style={styles.bulletPoint}>• Statistical Analysis of the Emotion of Each Tweet:</Text> Utilizes advanced statistical methods to quantify and analyze the emotional content of tweets, enabling a deeper understanding of user emotions and facilitating targeted interventions.
         </Text>
       </View>
     </ScrollView>
@@ -35,23 +35,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FEEAFA',
     paddingHorizontal: 20,
+    marginBottom: 20,
   },
   logo: {
     width: 200,
     height: 200,
-    marginBottom: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#FF88A2',
-    marginBottom: 10,
   },
   description: {
     fontSize: 18,
     color: '#1a1a1a',
     textAlign: 'center',
     lineHeight: 24,
+    marginBottom: 30,
+  },
+  bulletPoint: {
+    fontSize: 18,
+    color: '#1a1a1a',
+    fontWeight: 'bold',
   },
 });
 

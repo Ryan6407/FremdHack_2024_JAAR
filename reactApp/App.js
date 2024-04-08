@@ -16,27 +16,27 @@ const App = () => {
         <Stack.Screen
           name="UsernamePage"
           component={UsernamePage}
-          options={{ title: 'Username Page' }}
+          options={{ title: ' ' }}
         />
         <Stack.Screen
           name="LoadingScreen"
           component={LoadingScreen}
-          options={{ title: 'Loading Screen' }}
+          options={{ title: ' ' }}
         />
         <Stack.Screen
           name="AnalyticsScreen"
           component={AnalyticsScreen}
-          options={{ title: 'Analytics Screen' }}
+          options={{ title: ' ' }}
         />
         <Stack.Screen
           name="AddTweet"
           component={TweetPage}
-          options={{ title: 'Add Tweet' }}
+          options={{ title: ' ' }}
         />
         <Stack.Screen
           name="OurAI"
           component={OurAIScreen}
-          options={{ title: 'Our AI' }}
+          options={{ title: ' ' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

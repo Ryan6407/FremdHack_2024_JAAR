@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 
-const TweetPage = () => {
+const TweetPage = ({ navigation }) => {
   const [tweet, setTweet] = useState('');
 
   const handleAddTweet = () => {
@@ -13,23 +13,21 @@ const TweetPage = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('./assets/twitter-logo.png')}
-        style={styles.logo}
-      />
+      <Image source={require('./assets/twitter-logo.png')} style={styles.logo} />
+      <Text style={styles.title}>Share your thoughts</Text>
       <TextInput
         style={styles.input}
         onChangeText={setTweet}
         value={tweet}
-        placeholder="Enter Tweet"
+        placeholder="Express yourself in full bloom..."
         multiline={true}
-        numberOfLines={2} // adjusting size
+        numberOfLines={6} // Adjusted for more input
       />
       <TouchableOpacity onPress={handleAddTweet} style={styles.button}>
-        <Text style={styles.buttonText}>Add Tweet</Text>
+        <Text style={styles.buttonText}>Blossom</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {}} style={styles.menuButton}>
-        <Text style={styles.menuText}>Back to Main Menu</Text>
+      <TouchableOpacity onPress={() => {navigation.navigate('LoadingScreen')}} style={styles.menuButton}>
+        <Text style={styles.menuText}>Return to the Secret Garden</Text>
       </TouchableOpacity>
     </View>
   );
@@ -41,38 +39,52 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-  },
-  input: {
-    height: 100, // smaller size
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 20,
+    backgroundColor: '#FEEAFA', // Light pink background
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 150, // Increased size for better visibility
+    height: 150, // Increased size for better visibility
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FF69B4', // Hot pink title
     marginBottom: 20,
+    textAlign: 'center', // Centered text
+  },
+  input: {
+    height: 200, // Increased height for more input area
+    width: '100%',
+    borderColor: '#FF69B4', // Hot pink border color
+    borderWidth: 2,
+    borderRadius: 20, // Rounded corners
+    padding: 10,
+    marginBottom: 20,
+    fontSize: 18, // Larger font size
+    color: '#4B0082', // Indigo text color
+    textAlignVertical: 'top', // Start input from top
   },
   button: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    width: '100%',
-    alignItems: 'center',
-    marginBottom: 10,
+    backgroundColor: '#FF1493', // Deep pink button color
+    paddingVertical: 12,
+    paddingHorizontal: 50,
+    borderRadius: 25, // Rounded corners
+    marginBottom: 20,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
+    fontWeight: 'bold',
   },
   menuButton: {
     marginTop: 20,
   },
   menuText: {
-    color: 'blue',
+    color: '#FF1493', // Deep pink menu text color
     textDecorationLine: 'underline',
+    fontSize: 16,
+    fontStyle: 'italic', // Italicized menu text
   },
 });
 
