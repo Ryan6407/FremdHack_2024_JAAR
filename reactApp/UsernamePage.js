@@ -11,7 +11,7 @@ const UsernamePage = ({ navigation }) => {
 
   const handleLearnAI = () => {
     // Navigate to another screen when Learn AI button is pressed
-    navigation.navigate('AnalyticsScreen');
+    navigation.navigate('OurAI');
   };
 
   const handleMentalHealthAwareness = () => {
