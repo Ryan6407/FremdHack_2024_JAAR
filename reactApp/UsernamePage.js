@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Image, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, TextInput, StyleSheet, TouchableOpacity, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const UsernamePage = ({ navigation }) => {
   const [username, setUsername] = useState('');
 
   const handleEnter = () => {
     // Navigate to another screen when Enter button is pressed
-    navigation.navigate('LoadingScreen');
+    navigation.navigate('LoadingScreen', { username });
   };
 
   const handleLearnAI = () => {
@@ -20,45 +20,47 @@ const UsernamePage = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
 
-      {/* Title */}
-      <Text style={styles.title}>ChirpAI</Text>
-      {/* Subtitle */}
-      <Text style={styles.subtitle}>Spreading Wings of Mental Health Support</Text>
+        {/* Title */}
+        <Text style={styles.title}>ChirpAI</Text>
+        {/* Subtitle */}
+        <Text style={styles.subtitle}>Spreading Wings of Mental Health Support</Text>
 
-      <Image
-        source={require('./assets/FHS_Hack_Logo.png')}
-        style={styles.logo}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setUsername}
-        value={username}
-        placeholder="Enter your username"
-      />
-      {/* Enter Button */}
-      <TouchableOpacity style={styles.button} onPress={handleEnter}>
-        <View style={[styles.textContainer, styles.adjustTextPosition]}>
-          <Text style={styles.buttonText}>Enter</Text>
-        </View>
-        <Image source={require('./assets/Enter_Logo.png')} style={styles.buttonLogo} />
-      </TouchableOpacity>
-      {/* Learn AI Button */}
-      <TouchableOpacity style={styles.button} onPress={handleLearnAI}>
-        <View style={[styles.textContainer, styles.adjustTextPosition]}>
-          <Text style={styles.buttonText}>Our AI</Text>
-        </View>
-        <Image source={require('./assets/AI_Logo.png')} style={styles.buttonLogo} />
-      </TouchableOpacity>
-      {/* Mental Health Awareness Button */}
-      <TouchableOpacity style={styles.button} onPress={handleMentalHealthAwareness}>
-        <View style={styles.textContainer}>
-          <Text style={styles.buttonText}>Mental Health Awareness</Text>
-        </View>
-        <Image source={require('./assets/Awareness_Logo.png')} style={styles.buttonLogo} />
-      </TouchableOpacity>
-    </View>
+        <Image
+          source={require('./assets/FHS_Hack_Logo.png')}
+          style={styles.logo}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setUsername}
+          value={username}
+          placeholder="Enter your username"
+        />
+        {/* Enter Button */}
+        <TouchableOpacity style={styles.button} onPress={handleEnter}>
+          <View style={[styles.textContainer, styles.adjustTextPosition]}>
+            <Text style={styles.buttonText}>Enter</Text>
+          </View>
+          <Image source={require('./assets/Enter_Logo.png')} style={styles.buttonLogo} />
+        </TouchableOpacity>
+        {/* Learn AI Button */}
+        <TouchableOpacity style={styles.button} onPress={handleLearnAI}>
+          <View style={[styles.textContainer, styles.adjustTextPosition]}>
+            <Text style={styles.buttonText}>Our AI</Text>
+          </View>
+          <Image source={require('./assets/AI_Logo.png')} style={styles.buttonLogo} />
+        </TouchableOpacity>
+        {/* Mental Health Awareness Button */}
+        <TouchableOpacity style={styles.button} onPress={handleMentalHealthAwareness}>
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>Mental Health Awareness</Text>
+          </View>
+          <Image source={require('./assets/Awareness_Logo.png')} style={styles.buttonLogo} />
+        </TouchableOpacity>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

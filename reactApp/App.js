@@ -8,13 +8,20 @@ import TweetPage from './addTweet';
 import OurAIScreen from './OurAI';
 import AnalyzeText from './AIHelperFunctions';
 import AwarenessPage from './Awareness';
+import Sentiment from 'sentiment';
+import { useState } from 'react';
+
+function SentimentAnalysis(text) {
+    var sentiment = new Sentiment();
+    var result = sentiment.analyze(text);
+    return result.score;
+}
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
-  console.log("check");
-
-  AnalyzeText(["test1", "test2", "test3"]);
+  console.log(SentimentAnalysis("i am so mad"));
 
   return (
     <NavigationContainer>
